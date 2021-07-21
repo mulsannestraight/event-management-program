@@ -1,7 +1,7 @@
 <div class="row">
   <h1>Add a new event</h1>
 
-  <form [formGroup]="addEventForm">
+  <form [formGroup]="addEventForm" novalidate>
     <div class="row">
       <div class="col-6">
         <div class="form-group">
@@ -46,35 +46,24 @@
 
         <div class="form-group">
           <label>Start date</label>
-          <input type="text" class="form-control"
+          <input type="date" class="form-control"
                  formControlName="startDate" placeholder="mm/dd/yyyy"
-                 [class.is-invalid]="location.touched && location.invalid">
+                 [class.is-invalid]="startDate.touched && startDate.invalid">
 
-          <div *ngIf="startDate.touched && startDate.errors">
-            <div class="alert alert-danger" *ngIf="startDate.errors?.pattern">
-              <b>Start date</b> must use the format <b>mm/dd/yyyy</b>
-            </div>
-
-            <div class="alert alert-danger" *ngIf="startDate.errors?.required">
-              <b>Start date</b> cannot be empty
-            </div>
+          <div class="alert alert-danger" *ngIf="startDate.touched && startDate.errors">
+            <b>Start date</b> cannot be empty
           </div>
         </div>
 
         <div class="form-group">
           <label>End date</label>
-          <input type="text" class="form-control" formControlName="endDate"
+          <input type="date" class="form-control" formControlName="endDate"
                  placeholder="mm/dd/yyyy"
                  [class.is-invalid]="endDate.touched && endDate.invalid">
 
-          <div *ngIf="startDate.touched && startDate.errors">
-            <div class="alert alert-danger" *ngIf="endDate.errors?.pattern">
-              <b>End date</b> must use the format <b>mm/dd/yyyy</b>
-            </div>
-
-            <div class="alert alert-danger" *ngIf="endDate.errors?.required">
-              <b>End date</b> cannot be empty
-            </div>
+          <div class="alert alert-danger" *ngIf="endDate.touched &&
+          endDate.errors">
+            <b>End date</b> cannot be empty
           </div>
         </div>
       </div>
@@ -82,24 +71,57 @@
       <div class="col-6">
         <div class="form-group">
           <label>Start time</label>
-          <input type="text" class="form-control" formControlName="startTime">
+          <input type="text" class="form-control"
+                 formControlName="startTime"
+                 [class.is-invalid]="startTime.touched && startTime.invalid">
+
+          <div class="alert alert-danger"
+               *ngIf="startTime.touched && startTime.errors"><b>Start time</b>
+            cannot be empty</div>
         </div>
 
         <div class="form-group">
           <label>End time</label>
-          <input type="text" class="form-control" formControlName="endTime">
+          <input type="text" class="form-control" formControlName="endTime"
+                 [class.is-invalid]="endTime.touched && endTime.invalid">
+
+          <div class="alert alert-danger"
+               *ngIf="endTime.touched && endTime.errors"><b>End time</b>
+            cannot be empty</div>
         </div>
 
         <div class="form-group">
           <label>Adult ticket price</label>
           <input type="text" class="form-control"
-                 formControlName="adultTicketPrice">
+                 formControlName="adultTicketPrice"
+                 [class.is-invalid]="adultTicketPrice.touched && adultTicketPrice.invalid">
+
+          <div *ngIf="adultTicketPrice.touched && adultTicketPrice.errors">
+            <div class="alert alert-danger" *ngIf="adultTicketPrice.errors?.pattern">
+              <b>Adult ticket price</b> must be a number
+            </div>
+
+            <div class="alert alert-danger" *ngIf="adultTicketPrice.errors?.required">
+              <b>Adult ticket price</b> cannot be empty
+            </div>
+          </div>
         </div>
 
         <div class="form-group">
           <label>Child ticket price</label>
           <input type="text" class="form-control"
-                 formControlName="childTicketPrice">
+                 formControlName="childTicketPrice"
+                 [class.is-invalid]="childTicketPrice.touched && childTicketPrice.invalid">
+
+          <div *ngIf="childTicketPrice.touched && childTicketPrice.errors">
+            <div class="alert alert-danger" *ngIf="childTicketPrice.errors?.pattern">
+              <b>Child ticket price</b> must be a number
+            </div>
+
+            <div class="alert alert-danger" *ngIf="childTicketPrice.errors?.required">
+              <b>Child ticket price</b> cannot be empty
+            </div>
+          </div>
         </div>
 
         <div class="form-group">

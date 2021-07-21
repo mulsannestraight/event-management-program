@@ -1,10 +1,30 @@
 <div class="row">
-  <div class="col">
-    <h2>User Events Layout</h2>
-  </div>
-
-  <div class="col-2 right-align">
-    <button type="button" class="btn btn-danger" (click)="logout()">Log
+  <div class="col right-align">
+    <p>Logged in as: {{user}}</p>
+    <button type="button" class="btn btn-danger bottom-space" (click)="logout()">Log
       out</button>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-2">
+    <button routerLink="/event_mgmt" class="btn btn-outline-success bottom-space">Manage
+      Events</button>
+    <button routerLink="/user_event_mgmt"
+            class="btn btn-outline-success">User View</button>
+  </div>
+
+  <div class="col">
+    <h1 class="vivid-background">Event Registration</h1>
+
+    <div class="image-box" *ngFor="let event of events; let i = index;"
+         (click)="showEvents(event)">
+
+      <!-- Recycle images inside the limited capacity image array -->
+      <img [src]="randomImages[i % events.length]">
+      <p>{{event.name}}: {{event.location}}</p>
+    </div>
+
+  </div>
+</div>
+

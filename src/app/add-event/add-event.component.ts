@@ -21,14 +21,8 @@ export class AddEventComponent implements OnInit {
       description: ["", Validators.required],
       category: ["", Validators.required],
       location: ["", Validators.required],
-      startDate: ["", [
-        Validators.required,
-        Validators.pattern(/^(0?[1-9]|1[0-2])\/(0?[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/)
-      ]],
-      endDate: ["", [
-        Validators.required,
-        Validators.pattern(/^(0?[1-9]|1[0-2])\/(0?[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/)
-      ]],
+      startDate: ["", Validators.required],
+      endDate: ["", Validators.required],
       startTime: ["", Validators.required],
       endTime: ["", Validators.required],
       adultTicketPrice: ["", [
@@ -39,7 +33,7 @@ export class AddEventComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/)
       ]],
-      isRegistrationAllowed: ["", Validators.required]
+      isRegistrationAllowed: ["yes", Validators.required]
     });
   }
 
@@ -56,13 +50,13 @@ export class AddEventComponent implements OnInit {
     this.eventService.addEvent(formValues).subscribe(
       () => {
         console.log("A new event has been created.");
+
+        // anything you pass to close() will be received by whoever is activating
+        // the dialog window (in this case, the `Add new event` button in the
+        // event-management component
+        this.dialogRef.close(true);
       }
     );
-
-    // anything you pass to close() will be received by whoever is activating
-    // the dialog window (in this case, the `Add new event` button in the
-    // event-management component
-    this.dialogRef.close(true);
   }
 
   closeDialog() {

@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {EventService} from "../services/event.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AddEventComponent} from "../add-event/add-event.component";
+import {EditEventComponent} from "../edit-event/edit-event.component";
 @Component({
   selector: 'app-event-management',
   templateUrl: './event-management.component.html',
@@ -46,14 +47,33 @@ export class EventManagementComponent implements OnInit {
 
   openAddEventForm() {
     let dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
+    dialogConfig.autoFocus = false;
 
-    let dialogRef = this.dialog.open(AddEventComponent).afterClosed().subscribe(
+    let dialogRef = this.dialog.open(AddEventComponent, dialogConfig).afterClosed().subscribe(
       (data) => {
 
         // when dialog is closed after the user submits a form, `true` is
         // return to signal a successful event addition. We then update the
         // event management accordingly
+        if (data) {
+          this.eventService.getEvents().subscribe(
+            (data) => {
+              this.events = data;
+            }
+          );
+        }
+      }
+    );
+  }
+
+  openEditEventForm(event: any) {
+    let dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = event;
+
+    let dialogRef = this.dialog.open(EditEventComponent, dialogConfig).afterClosed().subscribe(
+      (data) => {
+
         if (data) {
           this.eventService.getEvents().subscribe(
             (data) => {

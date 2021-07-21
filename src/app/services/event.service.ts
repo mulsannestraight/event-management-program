@@ -27,7 +27,7 @@ export class EventService {
     return this.http.post<Event>(this.apiURL, event);
   }
 
-  updateEventById(event: any): Observable<Event> {
-    return this.http.put<Event>(this.apiURL, event);
+  updateEventById(id: string, event: any): Observable<Event> {
+    return this.http.put<Event>(`${this.apiURL}/${id}`, event);
   }
 }

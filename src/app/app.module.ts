@@ -11,6 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { EventManagementComponent } from './event-management/event-management.component';
 import { UserEventManagementComponent } from './user-event-management/user-event-management.component';
 import { AddEventComponent } from './add-event/add-event.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
+import { UserEventViewComponent } from './user-event-view/user-event-view.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { AddEventComponent } from './add-event/add-event.component';
     LoginComponent,
     EventManagementComponent,
     UserEventManagementComponent,
-    AddEventComponent
+    AddEventComponent,
+    EditEventComponent,
+    UserEventViewComponent
   ],
   imports: [
     BrowserModule,
