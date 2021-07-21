@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col right-align">
+    <p>Logged in as: {{user}}</p>
+    <button type="button" class="btn btn-danger bottom-space" (click)="logout()">Log
+      out</button>
+    <br>
+    <button type="button" class="btn btn-success bottom-space"
+            (click)="openAddEventForm()">Add
+      new event</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-2">
+    <button routerLink="/event_mgmt" class="btn btn-outline-success bottom-space">Manage
+      Events</button>
+    <button routerLink="/user_event_mgmt"
+            class="btn btn-outline-success">User View</button>
+  </div>
+
+  <div class="col">
+    <h1 class="vivid-background">Event Management</h1>
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Event</th>
+          <th scope="col">Category</th>
+          <th scope="col">Location</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th scope="col">Edit/Delete</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let event of events;">
+          <td>{{event.name}}</td>
+          <td>{{event.category}}</td>
+          <td>{{event.location}}</td>
+          <td>{{event.startDate | date:"shortDate"}}</td>
+          <td>{{event.endDate | date:"shortDate"}}</td>
+          <td>
+            <button type="button" class="btn btn-primary">Edit</button>&nbsp;
+            <button type="button" class="btn btn-danger"
+                    (click)="deleteEvent(event._id)">Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,136 @@
+<div class="row">
+  <h1>Add a new event</h1>
+
+  <form [formGroup]="addEventForm">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name"
+                 [class.is-invalid]="name.touched && name.invalid">
+
+          <div class="alert alert-danger"
+               *ngIf="name.touched && name.errors"><b>Name</b> cannot be
+            empty</div>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" class="form-control" formControlName="description"
+                 [class.is-invalid]="description.touched && description.invalid">
+
+          <div class="alert alert-danger"
+               *ngIf="description.touched && description.errors"><b>Description
+          </b> cannot be empty</div>
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <input type="text" class="form-control" formControlName="category"
+                 [class.is-invalid]="category.touched && category.invalid">
+
+          <div class="alert alert-danger"
+               *ngIf="category.touched && category.errors"><b>Category</b>
+            cannot be empty</div>
+        </div>
+
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" class="form-control" formControlName="location"
+                 [class.is-invalid]="location.touched && location.invalid">
+
+          <div class="alert alert-danger"
+               *ngIf="location.touched && location.errors"><b>Location</b>
+            cannot be empty</div>
+        </div>
+
+        <div class="form-group">
+          <label>Start date</label>
+          <input type="text" class="form-control"
+                 formControlName="startDate" placeholder="mm/dd/yyyy"
+                 [class.is-invalid]="location.touched && location.invalid">
+
+          <div *ngIf="startDate.touched && startDate.errors">
+            <div class="alert alert-danger" *ngIf="startDate.errors?.pattern">
+              <b>Start date</b> must use the format <b>mm/dd/yyyy</b>
+            </div>
+
+            <div class="alert alert-danger" *ngIf="startDate.errors?.required">
+              <b>Start date</b> cannot be empty
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>End date</label>
+          <input type="text" class="form-control" formControlName="endDate"
+                 placeholder="mm/dd/yyyy"
+                 [class.is-invalid]="endDate.touched && endDate.invalid">
+
+          <div *ngIf="startDate.touched && startDate.errors">
+            <div class="alert alert-danger" *ngIf="endDate.errors?.pattern">
+              <b>End date</b> must use the format <b>mm/dd/yyyy</b>
+            </div>
+
+            <div class="alert alert-danger" *ngIf="endDate.errors?.required">
+              <b>End date</b> cannot be empty
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label>Start time</label>
+          <input type="text" class="form-control" formControlName="startTime">
+        </div>
+
+        <div class="form-group">
+          <label>End time</label>
+          <input type="text" class="form-control" formControlName="endTime">
+        </div>
+
+        <div class="form-group">
+          <label>Adult ticket price</label>
+          <input type="text" class="form-control"
+                 formControlName="adultTicketPrice">
+        </div>
+
+        <div class="form-group">
+          <label>Child ticket price</label>
+          <input type="text" class="form-control"
+                 formControlName="childTicketPrice">
+        </div>
+
+        <div class="form-group">
+          <p>Allow registration?</p>
+
+          <div class="form-check">
+            <input type="radio" class="form-check-input"
+                   formControlName="isRegistrationAllowed" value="yes"
+                   name="isRegistrationAllowed" id="check-1">
+            <label class="form-check-label" for="check-1">Yes</label>
+          </div>
+
+          <div class="form-check">
+            <input type="radio" class="form-check-input"
+                   formControlName="isRegistrationAllowed" value="no"
+                   name="isRegistrationAllowed" id="check-2">
+            <label class="form-check-label" for="check-2">No</label>
+          </div>
+        </div>
+
+        <div class="padding-top-bottom">
+          <button type="button" class="btn btn-outline-primary"
+                  (click)="onSubmit()" [disabled]="addEventForm.invalid">Submit
+          </button>
+          &nbsp;
+          <button type="button" class="btn btn-outline-secondary"
+                  (click)="closeDialog()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

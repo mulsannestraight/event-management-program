@@ -1,0 +1,42 @@
+<div class="center">
+  <div class="row">
+    <div class="col-2"></div>
+
+    <div class="col">
+      <form [formGroup]="loginForm">
+        <div class="form-group padding-top-bottom">
+          <label>Username</label>
+          <input type="text" class="form-control" formControlName="username"
+                 [class.is-invalid]="username.touched && username.invalid">
+
+          <div *ngIf="username.touched && username.errors">
+            <div class="alert alert-danger">Username cannot be blank</div>
+          </div>
+        </div>
+
+        <div class="form-group padding-top-bottom">
+          <label>Password</label>
+          <input type="password" class="form-control"
+                 formControlName="password"
+                 [class.is-invalid]="password.touched && password.invalid">
+
+          <div *ngIf="password.touched && password.errors">
+            <div class="alert alert-danger">Username cannot be blank</div>
+          </div>
+        </div>
+
+        <div class="padding-top-bottom">
+          <button type="button" class="btn btn-primary"
+                  [disabled]="loginForm.invalid" (click)="onSubmit()">Login
+          </button>
+        </div>
+
+        <div class="padding-top-bottom" *ngIf="isLoginInvalid">
+          <div class="alert alert-danger">Invalid credentials</div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-2"></div>
+  </div>
+</div>
