@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.app-banner {
+  text-align: center;
+  background-color: #1D88EC;
+  color: #fff;
+  padding: 15px;
+}
+
+.center {
+  text-align: center;
+}
+
+.padding-top-bottom {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.right-align {
+  text-align: right;
+}
+
+.vivid-background {
+  background-color: #1D88EC;
+  color: #fff;
+  padding: 8px;
+}
+
+.bottom-space {
+  margin-bottom: 4px;
+}
+
+input {
+  margin-bottom: 10px;
+}
+
+.alert {
+  padding: 7px;
+}
