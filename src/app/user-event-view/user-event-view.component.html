@@ -1,0 +1,73 @@
+<div class="row">
+  <h1>Event overview</h1>
+
+  <form [formGroup]="eventViewForm">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name" readonly>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" class="form-control" formControlName="description" readonly>
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <input type="text" class="form-control" formControlName="category" readonly>
+        </div>
+
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" class="form-control" formControlName="location" readonly>
+        </div>
+
+        <div class="form-group">
+          <label>Start date</label>
+          <input type="date" class="form-control"
+                 formControlName="startDate" placeholder="mm/dd/yyyy" readonly>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label>End date</label>
+          <input type="date" class="form-control" formControlName="endDate"
+                 placeholder="mm/dd/yyyy" readonly>
+        </div>
+
+        <div class="form-group">
+          <label>Start time</label>
+          <input type="text" class="form-control"
+                 formControlName="startTime" readonly>
+        </div>
+
+        <div class="form-group">
+          <label>End time</label>
+          <input type="text" class="form-control" formControlName="endTime" readonly>
+        </div>
+
+        <div class="form-group">
+          <label>Adult ticket price</label>
+          <input type="text" class="form-control"
+                 formControlName="adultTicketPrice" readonly>
+        </div>
+
+        <div class="form-group">
+          <label>Child ticket price</label>
+          <input type="text" class="form-control"
+                 formControlName="childTicketPrice" readonly>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="padding-top-bottom">
+    <button type="button" class="btn btn-outline-secondary"
+            (click)="closeDialog()">
+      Cancel
+    </button>
+  </div>
+</div>

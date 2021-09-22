@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {
+  FormBuilder,
+  Validators
+} from "@angular/forms";
 import {MatDialogRef} from "@angular/material/dialog";
 import {EventService} from "../services/event.service";
+import {dateRangeValidator} from "../services/date-range-validator";
 
 @Component({
   selector: 'app-add-event',
@@ -34,18 +38,14 @@ export class AddEventComponent implements OnInit {
         Validators.pattern(/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/)
       ]],
       isRegistrationAllowed: ["yes", Validators.required]
-    });
+    }, {validators: dateRangeValidator("startDate", "endDate")});
   }
 
   onSubmit() {
     // get a copy of form values for modification
     let formValues = Object.assign({}, this.addEventForm.value);
 
-    if (formValues.isRegistrationAllowed === "yes") {
-      formValues.isRegistrationAllowed = true;
-    } else {
-      formValues.isRegistrationAllowed = false;
-    }
+    formValues.isRegistrationAllowed = formValues.isRegistrationAllowed === "yes";
 
     this.eventService.addEvent(formValues).subscribe(
       () => {

@@ -1,7 +1,7 @@
 <div class="row">
   <h1>Add a new event</h1>
 
-  <form [formGroup]="addEventForm" novalidate>
+  <form [formGroup]="editEventForm" novalidate>
     <div class="row">
       <div class="col-6">
         <div class="form-group">
@@ -61,15 +61,8 @@
                  placeholder="mm/dd/yyyy"
                  [class.is-invalid]="endDate.touched && endDate.invalid">
 
-          <div *ngIf="endDate.touched && endDate.errors">
-            <div class="alert alert-danger" *ngIf="endDate.errors?.required">
-              <b>End date</b> cannot be empty
-            </div>
-          </div>
-
-          <div class="alert alert-danger"
-               *ngIf="endDate.touched && addEventForm.errors?.dateRange">
-            <b>End date</b> must not be before <b>Start date</b>
+          <div class="alert alert-danger" *ngIf="endDate.touched && endDate.errors">
+            <b>End date</b> cannot be empty
           </div>
         </div>
       </div>
@@ -150,7 +143,7 @@
 
         <div class="padding-top-bottom">
           <button type="button" class="btn btn-outline-primary"
-                  (click)="onSubmit()" [disabled]="addEventForm.invalid">Submit
+                  (click)="updateEvent()" [disabled]="editEventForm.invalid">Submit
           </button>
           &nbsp;
           <button type="button" class="btn btn-outline-secondary"

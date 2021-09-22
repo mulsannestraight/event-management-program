@@ -5,6 +5,8 @@ import {EventService} from "../services/event.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AddEventComponent} from "../add-event/add-event.component";
 import {EditEventComponent} from "../edit-event/edit-event.component";
+import {DeleteConfirmationComponent} from "../delete-confirmation/delete-confirmation.component";
+
 @Component({
   selector: 'app-event-management',
   templateUrl: './event-management.component.html',
@@ -35,21 +37,13 @@ export class EventManagementComponent implements OnInit {
     return localStorage.getItem("username");
   }
 
-  deleteEvent(id: string) {
-    this.eventService.deleteEventById(id).subscribe(
-      () => {
-        this.eventService.getEvents().subscribe((data) => {
-          this.events = data;
-        });
-      }
-    );
-  }
-
   openAddEventForm() {
     let dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = false;
 
-    let dialogRef = this.dialog.open(AddEventComponent, dialogConfig).afterClosed().subscribe(
+    let dialogRef = this.dialog.open(AddEventComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
       (data) => {
 
         // when dialog is closed after the user submits a form, `true` is
@@ -71,13 +65,39 @@ export class EventManagementComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.data = event;
 
-    let dialogRef = this.dialog.open(EditEventComponent, dialogConfig).afterClosed().subscribe(
+    let dialogRef = this.dialog.open(EditEventComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
       (data) => {
 
         if (data) {
           this.eventService.getEvents().subscribe(
             (data) => {
               this.events = data;
+            }
+          );
+        }
+      }
+    );
+  }
+
+  openDeleteConfirmation(id: string) {
+    let dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = false;
+
+    let dialogRef = this.dialog.open(DeleteConfirmationComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      (data) => {
+
+        // If data received from dialog is `true`, confirm the deletion.
+        // Otherwise do nothing
+        if (data) {
+          this.eventService.deleteEventById(id).subscribe(
+            () => {
+              this.eventService.getEvents().subscribe((data) => {
+                this.events = data;
+              });
             }
           );
         }
