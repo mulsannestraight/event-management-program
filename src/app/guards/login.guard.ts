@@ -18,15 +18,16 @@ export class LoginGuard implements CanActivate {
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if (localStorage.getItem("role") === "admin" ||
-        localStorage.getItem("role") === "user") {
+    if (localStorage.getItem('role') === 'admin' ||
+      localStorage.getItem('role') === 'user') {
 
       return true;
     } else {
-      alert("You are not authorized to view this page.");
-      this.router.navigate(["/"]);
+      alert('You are not authorized to view this page.');
+      this.router.navigate(['/']);
 
       return false;
     }

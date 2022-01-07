@@ -1,6 +1,6 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {FormBuilder} from "@angular/forms";
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-user-event-view',
@@ -11,16 +11,18 @@ export class UserEventViewComponent implements OnInit {
   event: any;
   eventViewForm: any;
 
-  constructor(private dialogRef: MatDialogRef<UserEventViewComponent>,
-              @Inject(MAT_DIALOG_DATA) private data: any,
-              private fb: FormBuilder) {
+  constructor(
+    private dialogRef: MatDialogRef<UserEventViewComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: any,
+    private fb: FormBuilder
+  ) {
 
     this.event = data;
   }
 
   ngOnInit(): void {
-    let startDateValue = this.event.startDate.split("T")[0];
-    let endDateValue = this.event.endDate.split("T")[0];
+    let startDateValue = this.event.startDate.split('T')[0];
+    let endDateValue = this.event.endDate.split('T')[0];
 
     this.eventViewForm = this.fb.group({
       name: [this.event.name],

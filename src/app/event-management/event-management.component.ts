@@ -1,11 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {LoginService} from "../services/login.service";
-import {Router} from "@angular/router";
-import {EventService} from "../services/event.service";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {AddEventComponent} from "../add-event/add-event.component";
-import {EditEventComponent} from "../edit-event/edit-event.component";
-import {DeleteConfirmationComponent} from "../delete-confirmation/delete-confirmation.component";
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../services/login.service';
+import { Router } from '@angular/router';
+import { EventService } from '../services/event.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AddEventComponent } from '../add-event/add-event.component';
+import { EditEventComponent } from '../edit-event/edit-event.component';
+import {
+  DeleteConfirmationComponent
+} from '../delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'app-event-management',
@@ -15,10 +17,13 @@ import {DeleteConfirmationComponent} from "../delete-confirmation/delete-confirm
 export class EventManagementComponent implements OnInit {
   events: any;
 
-  constructor(private loginService: LoginService,
-              private router: Router,
-              private eventService: EventService,
-              private dialog: MatDialog) { }
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private eventService: EventService,
+    private dialog: MatDialog
+  ) {
+  }
 
   ngOnInit(): void {
     this.eventService.getEvents().subscribe(
@@ -30,11 +35,11 @@ export class EventManagementComponent implements OnInit {
 
   logout() {
     this.loginService.logout();
-    this.router.navigate(["/"]);
+    this.router.navigate(['/']);
   }
 
   get user() {
-    return localStorage.getItem("username");
+    return localStorage.getItem('username');
   }
 
   openAddEventForm() {
@@ -85,13 +90,18 @@ export class EventManagementComponent implements OnInit {
     let dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = false;
 
-    let dialogRef = this.dialog.open(DeleteConfirmationComponent, dialogConfig);
+    let dialogRef = this.dialog.open(
+      DeleteConfirmationComponent,
+      dialogConfig
+    );
 
     dialogRef.afterClosed().subscribe(
       (data) => {
 
-        // If data received from dialog is `true`, confirm the deletion.
-        // Otherwise do nothing
+        /*
+         * If data received from dialog is `true`, confirm the deletion.
+         * Otherwise, do nothing.
+         */
         if (data) {
           this.eventService.deleteEventById(id).subscribe(
             () => {

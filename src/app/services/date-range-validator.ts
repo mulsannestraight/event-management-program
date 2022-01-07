@@ -1,12 +1,20 @@
-import {AbstractControl, ValidationErrors, ValidatorFn} from "@angular/forms";
+import {
+  AbstractControl,
+  ValidationErrors,
+  ValidatorFn
+} from '@angular/forms';
 
-export function dateRangeValidator(startDateField: string, endDateField: string): ValidatorFn {
+export function dateRangeValidator(
+  startDateField: string,
+  endDateField: string
+): ValidatorFn {
+
   return (formGroup: AbstractControl): ValidationErrors | null => {
     const start: string = formGroup.get(startDateField)?.value;
     const end: string = formGroup.get(endDateField)?.value;
 
-    const startString = start.split("-");
-    const endString = end.split("-");
+    const startString = start.split('-');
+    const endString = end.split('-');
 
     const startTime = new Date(
       Number(startString[0]),
@@ -20,11 +28,13 @@ export function dateRangeValidator(startDateField: string, endDateField: string)
     );
 
     if (startTime && endTime) {
-      const isRangeValid = (endTime.getTime() - startTime.getTime() >= 0);
+      const isRangeValid = (
+        endTime.getTime() - startTime.getTime() >= 0
+      );
 
-      return isRangeValid ? null : {dateRange: true};
+      return isRangeValid ? null : { dateRange: true };
     }
 
     return null;
-  }
+  };
 }
